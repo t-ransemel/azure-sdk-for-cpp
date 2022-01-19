@@ -155,7 +155,7 @@ function NewServicePrincipalWrapper([string]$subscription, [string]$resourceGrou
             $appId = $servicePrincipal.AppId
         } else {
             Write-Verbose "Creating service principal credential via MS Graph API"
-            # In 7.1.0 the password credential issue was fixed (see https://github.com/Azure/azure-powershell/pull/16690) but the
+            # In 5.2.0 the password credential issue was fixed (see https://github.com/Azure/azure-powershell/pull/16690) but the
             # parameter set was changed making the above call fail due to a missing ServicePrincipalId parameter.
             $credential = Retry { $servicePrincipal | New-AzADSpCredential }
             $spPassword = ConvertTo-SecureString $credential.SecretText -AsPlainText -Force
